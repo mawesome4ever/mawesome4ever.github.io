@@ -69,11 +69,11 @@
       }
       #PartItem table  {
         text-align: left;
-        width:70%;
-        position:center;
-        padding-left:25px;
-        padding-right:25px;
-        padding-bottom:10px;
+        width:100%;
+        position:inherit;
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-bottom: 1%;
         background-color: #3B3B3B;
       }
       .has-subtle-pale-blue-background-color.has-fixed-layout.has-background{
