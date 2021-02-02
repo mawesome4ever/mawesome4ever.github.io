@@ -79,7 +79,7 @@
         width: 100%;
         background-color: #3B3B3B;
       }
-      table {
+      tr {
         background-color:#3B3B3B;
       }
       /* unvisited link */
