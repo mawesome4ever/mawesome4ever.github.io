@@ -44,6 +44,7 @@
           width: 100%;
           margin: 0;
           padding: 14px;
+          color:#fff;
           background-color: #3B3B3B;
         }
         .topnav input[type=search] {
@@ -81,6 +82,13 @@
       }
       tr {
         background-color:#3B3B3B;
+      }
+      table {
+        background-color:#3B3B3B;
+      }
+      td {
+        background-color:#3B3B3B;
+        color: #fff;
       }
       /* unvisited link */
       a:link {
