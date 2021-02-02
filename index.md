@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=windows-1252">
@@ -53,7 +52,8 @@
       #PartItem {
         border-radius: 25px;
         color: #ffffff;
-        width: 100%;
+        width: 95%;
+        position:center;
         display: block;
         border: 1px solid #fff;
         margin: 10px;
@@ -62,19 +62,21 @@
       #PartItem figure  {
         text-align: left;
         border: 0px;
+        background-color: #3B3B3B;
+        position:center;
       }
       #PartItem table  {
         text-align: left;
-        width:100%;
+        width:70%;
+        position:center;
         padding-left:25px;
         padding-right:25px;
-        border: 0px;
+        padding-bottom:10px;
+        background-color: #3B3B3B;
       }
       .has-subtle-pale-blue-background-color.has-fixed-layout.has-background{
         width: 100%;
-      }
-      table ~ tr {
-        border-collapse: collapse;
+        background-color: #3B3B3B;
       }
       /* unvisited link */
       a:link {
