@@ -44,9 +44,10 @@
           width: 100%;
           margin: 0;
           padding: 14px;
+          background-color: #3B3B3B;
         }
         .topnav input[type=search] {
-          border: 1px solid #ccc;
+          border: 1px solid #fff;
         }
       
       #PartItem {
@@ -78,6 +79,9 @@
         width: 100%;
         background-color: #3B3B3B;
       }
+      table {
+        background-color:#3B3B3B;
+      }
       /* unvisited link */
       a:link {
         color: #3D97D4;
@@ -95,7 +99,7 @@
 
       /* selected link */
       a:active {
-        color: blue;
+        color: #3D97D4;
       }
     </style>
   </head>
