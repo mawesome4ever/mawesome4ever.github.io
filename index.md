@@ -6,7 +6,7 @@
     -->
 
 <head>
-    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" href="https://mawesome4ever.github.io/mawesome4ever.github.io/styling.css">
 </head>
 
 <body>
