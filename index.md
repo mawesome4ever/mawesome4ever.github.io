@@ -6,7 +6,7 @@
     -->
 
 <head>
-    <link rel="stylesheet" href="styling.css">
+    <link rel="stylesheet" type="text/css" href="styling.css">
 </head>
 
 <body>
