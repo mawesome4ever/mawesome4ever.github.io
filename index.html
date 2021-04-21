@@ -55,6 +55,8 @@
         //JSONParse
         var PartData = JSON.parse(PartJSON);
         let Details      = document.getElementsByClassName("PartDetails")[0];
+        let ShowDirectly = window.location.hash;
+        
          //We should create the grouped elements here, so it can also be used with recipes
          function CreateLeftRightGroup(ForElementKey, WithData, Depth){
             if(Depth == 3) { return "";}else {Depth = Depth + 1 | 0;}
@@ -91,7 +93,7 @@
             let AlreadyUsed  = ["Description", "Recipe"];
             let Desc         = document.createElement('div');
             Desc.className   = "Description";
-            Desc.innerHTML   = (ThisPartData.Description || "No Description For "+PartName+".");
+            Desc.innerHTML   = (ThisPartData.Description || "No Description For "+PartName+"." );
             Details.appendChild(Desc);
             let Rec          = document.createElement("div");
             Rec.className    = "Recipe";
@@ -123,11 +125,18 @@
             var NewOL = document.createElement("li");
             NewOL.onclick = OnClick;
             NewOL.className = "PartListItem";
+            NewOL.id        = key;
             NewOL.innerHTML = key;
             listElement.appendChild(Button);
             Button.appendChild(NewOL);
         }
-
+        if(ShowDirectly){
+            PartToShow = ShowDirectly.slice(1, ShowDirectly.length);
+            let PartExists = document.getElementById(PartToShow);
+            if (PartExists) {
+                PartExists.click();
+            }
+        }
         // document.getElementsByClassName("PartDetails")[0].remove();
         
     </script>
