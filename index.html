@@ -17,10 +17,13 @@
 
           gtag('config', 'G-TQM0C6B59G');
         </script>
+        <meta content="mawesome4ever" property="og:site_name">
+        <meta content="Part Name" property="og:title">
+
+        <meta content="" property="og:description">
 </head>
 
 <body>
-    <div class="MetaStuff"></div>
     <p> There are a total of 279 Parts </p>
     <h1 class="Title"></h1>
     <div class="WindowPanel">
@@ -66,7 +69,7 @@
         //JSONParse
         var PartData     = JSON.parse(PartJSON);
         let Details      = document.getElementsByClassName("PartDetails")[0];
-        let embed        = document.getElementsByClassName("MetaStuff")[0];
+        let embed        = document.getElementsByTagName("meta");
         let ShowDirectly = window.location.hash;
         
          //We should create the grouped elements here, so it can also be used with recipes
@@ -100,7 +103,6 @@
             let Tit          = document.getElementsByClassName("Title")[0];
             Tit.innerHTML    = PartName;
             Details.innerHTML = "";
-            embed.innerHTML = "";
            
             let ThisPartData = PartData[PartName];
             let AlreadyUsed  = ["Description", "Recipe"];
@@ -109,19 +111,16 @@
             Desc.className   = "Description";
             Desc.innerHTML   = DescText;
                 
-            //Meta stuff for discord embed    
-            var siteMeta = document.createElement('meta');
-            siteMeta.property = "og:site_name";
-            siteMeta.content = "mawesome4ever";
-            var titleMeta = document.createElement('meta');
-            titleMeta.property = "og:title";
-            titleMeta.content = PartName;
-            var descMeta = document.createElement('meta');
-            descMeta.property = "og:description";
-            descMeta.content = DescText;
-            embed.appendChild(siteMeta);
-            embed.appendChild(titleMeta);
-            embed.appendChild(descMeta);
+            //Meta stuff for discord embed   
+            
+            for (let i = 0; i < embed.length; i++) {
+                if (embed[i].getAttribute('property') === "og:title") {
+                        embed[i].content = PartName;
+                }
+                if (embed[i].getAttribute('property') === "og:description") {
+                        embed[i].content = DescText;
+                }
+            }
                 
             Details.appendChild(Desc);
             let Rec          = document.createElement("div");
