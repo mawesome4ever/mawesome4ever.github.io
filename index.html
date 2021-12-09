@@ -108,8 +108,20 @@
             let DescText     = (ThisPartData.Description || "No Description For "+PartName+"." );
             Desc.className   = "Description";
             Desc.innerHTML   = DescText;
-            
-            embed.innerHTML = '<meta content="mawesome4ever" property="og:site_name"> <meta property="og:title" content="'+PartName+'" /> <meta property="og:description" content="'+DescText+'" />';
+                
+            //Meta stuff for discord embed    
+            var siteMeta = document.createElement('meta');
+            siteMeta.property = "og:site_name";
+            siteMeta.content = "mawesome4ever";
+            var titleMeta = document.createElement('meta');
+            titleMeta.property = "og:title";
+            titleMeta.content = PartName;
+            var descMeta = document.createElement('meta');
+            descMeta.property = "og:description";
+            descMeta.content = DescText;
+            embed.appendChild(siteMeta);
+            embed.appendChild(titleMeta);
+            embed.appendChild(descMeta);
                 
             Details.appendChild(Desc);
             let Rec          = document.createElement("div");
