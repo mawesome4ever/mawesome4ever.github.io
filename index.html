@@ -20,6 +20,7 @@
 </head>
 
 <body>
+    <div class="MetaStuff"></div>
     <p> There are a total of 279 Parts </p>
     <h1 class="Title"></h1>
     <div class="WindowPanel">
@@ -31,7 +32,6 @@
     <div class="PartDetails">
         
     </div>
-    <div class="MetaStuff"></div>
 <!-- SearchBar Functionality -->
     <script>
         function LookUp() {
@@ -109,7 +109,7 @@
             Desc.className   = "Description";
             Desc.innerHTML   = DescText;
             
-            embed.innerHTML = '<meta property="og:title" content="'+PartName+'" /> <meta property="og:description" content="'+DescText+'" />';
+            embed.innerHTML = '<meta content="mawesome4ever" property="og:site_name"> <meta property="og:title" content="'+PartName+'" /> <meta property="og:description" content="'+DescText+'" />';
                 
             Details.appendChild(Desc);
             let Rec          = document.createElement("div");
