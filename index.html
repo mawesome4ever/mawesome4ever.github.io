@@ -71,23 +71,66 @@
         let Details      = document.getElementsByClassName("PartDetails")[0];
         let embed        = document.getElementsByTagName("meta");
         let ShowDirectly = window.location.hash;
-        
+        function newTable (){
+            let table    = document.createElement('table');
+            let r        = document.createElement("tr");
+            let le       = document.createElement("td");
+            let ri       = document.createElement("td");
+            r.appendChild(le);
+            r.appendChild(ri);
+            table.appendChild(r);
+            let Wrapper  = document.createElement("div");
+            Wrapper.appendChild(table);
+            return {wrapper: Wrapper, left:le, right:ri, row:r};
+        }
          //We should create the grouped elements here, so it can also be used with recipes
-         function CreateLeftRightGroup(ForElementKey, WithData, Depth){
+         function CreateLeftRightGroup(ForElementKey, WithData, Depth, keyvaluepairs){
             if(Depth == 3) { return "";}else {Depth = Depth + 1 | 0;}
             let table           = document.createElement('table');
             let row             = document.createElement("tr");
             let LeftSide        = document.createElement("td");
             LeftSide.innerHTML  = ForElementKey;
             let RightSide       = document.createElement("td");
-            
-            let AllKeys         = Object.keys(WithData[ForElementKey]) || undefined;
-            if(AllKeys && AllKeys.length > 0 && typeof(WithData[ForElementKey]) != "string"){
-                let Data = WithData[ForElementKey];
-                for(EachKey in AllKeys){
-                    let Returned        = CreateLeftRightGroup(AllKeys[EachKey], Data, Depth+1);
-                    RightSide.innerHTML = RightSide.innerHTML + Returned;
+            let value           = WithData[ForElementKey];
+            if ( typeof(value) == "undefined" ){
+                return undefined;
+            }
+            let AllKeys         = Object.keys(value);
+            if(AllKeys != undefined && AllKeys.length > 0 && typeof(value) != "string"){
+                console.log(value);
+                if ( value[0] != undefined){ //checking if it's an array
+                    if(keyvaluepairs){
+                        if(value[0][0] != undefined){
+                            for(let i=0; i<value.length; i++){
+                                let d = value[i]
+                                let tbl = newTable();
+                                tbl.left.innerHTML = d[0]+":";
+                                tbl.right.innerHTML = d[1];
+                                RightSide.innerHTML = RightSide.innerHTML + tbl.wrapper.innerHTML;
+                            }    
+                        }else{
+                            for(let i=0; i<value.length; i+=2){
+                                let tbl = newTable();
+                                tbl.left.innerHTML = value[i]+":";
+                                tbl.right.innerHTML = value[i + 1];
+                                RightSide.innerHTML = RightSide.innerHTML + tbl.wrapper.innerHTML;
+                            }
+                        }
+                    }else{
+                        for(let i=0; i<value.length; i++){
+                            let tbl = newTable();
+                            tbl.left.innerHTML = "";
+                            tbl.right.innerHTML = value[i];
+                            RightSide.innerHTML = RightSide.innerHTML + tbl.wrapper.innerHTML;
+                        }
+                    }
+                }else{ // it's a dictionary
+                    for(EachKey in AllKeys){
+                        let Returned        = CreateLeftRightGroup(AllKeys[EachKey], value, Depth+1);
+                        RightSide.innerHTML = RightSide.innerHTML + Returned;
+                    }
                 }
+                
             }else{
                 RightSide.innerHTML = WithData[ForElementKey];
             }
@@ -126,7 +169,7 @@
             let Rec          = document.createElement("div");
                 
             Rec.className    = "Recipe";
-            Rec.innerHTML    = (CreateLeftRightGroup("Recipe", ThisPartData) || "No recipe for "+PartName+".");
+            Rec.innerHTML    = (CreateLeftRightGroup("Recipe", ThisPartData, 0, true) || "<p></p>No recipe for "+PartName+".");
             Details.appendChild(Rec);
             
             for(key in ThisPartData){
